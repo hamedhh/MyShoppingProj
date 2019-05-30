@@ -17,6 +17,7 @@
         <AssociationConnector Association="EShoping_DBModel.FK_Prodct_Selected_Groups_Products" />
         <AssociationConnector Association="EShoping_DBModel.FK_Product_Galleries_Products" />
         <AssociationConnector Association="EShoping_DBModel.FK_Product_Tags_Products" />
+        <AssociationConnector Association="EShoping_DBModel.FK_Prodct_Selected_Groups_Product_Groups" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

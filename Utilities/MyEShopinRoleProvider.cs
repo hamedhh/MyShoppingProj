@@ -51,7 +51,7 @@ namespace Utilities
         }
 
         public override string[] GetRolesForUser(string username)
-        {
+       {
             using (EShoping_DBEntities db = new EShoping_DBEntities())
             {
                 return db.Users.Where(a => a.Email == username).Select(a => a.Roles.RoleName).ToArray();

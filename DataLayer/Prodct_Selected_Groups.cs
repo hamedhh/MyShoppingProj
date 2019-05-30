@@ -21,5 +21,6 @@ namespace DataLayer
         public int GroupID { get; set; }
     
         public virtual Products Products { get; set; }
+        public virtual Product_Groups Product_Groups { get; set; }
     }
 }
