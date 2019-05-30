@@ -1,0 +1,8 @@
+﻿@using System.Configuration
+@model  DataLayer.Users
+    <div style="direction:rtl; padding:20px" >
+        <h2>یا سلام، @Model.UserName عزیز  ایمیل فعال سازی شما در لینک زیر است  </h2>
+        <a href="@ConfigurationManager.AppSettings["RegisterAddress"]/Account/ActivateUser/@Model.ActiveCode"> کلیک کنید</a>
+    </div>
+
+
