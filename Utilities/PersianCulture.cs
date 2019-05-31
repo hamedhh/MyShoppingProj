@@ -13,7 +13,7 @@ namespace GSD.Globalization
 
         /// <summary>
         /// كد رو بخوان تا بفهمي
-        /// </summary>
+        /// </summary>این کد به عنوان یک -------- ماژول هندلر در گلوبال ----- به ازای هر ریکوئست فراخوانی میشود
         /// <param name="cultureName">fa-IR</param>
         /// <param name="useUserOverride">true</param>
         /// <remarks>لطفا در هنگام استفاده .</remarks>
@@ -65,7 +65,7 @@ namespace GSD.Globalization
 
             DateTimeFormat.AMDesignator = "ق.ظ";
             DateTimeFormat.PMDesignator = "ب.ظ";
-
+            //DateTimeFormat.SetAllDateTimePatterns(new[] { "dddd, dd MMMM yyyy" }, 'D');
             /*
             DateTimeFormat.ShortDatePattern = "yyyy/MM/dd";
             DateTimeFormat.LongDatePattern = "yyyy/MM/dd";

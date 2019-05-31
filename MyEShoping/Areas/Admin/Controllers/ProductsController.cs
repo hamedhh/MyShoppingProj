@@ -58,7 +58,7 @@ namespace MyEShoping.Areas.Admin.Controllers
                 ViewBag.productGroups = db.Product_Groups.ToList();
                 return View();
             }
-            products.ImageName = "index.png";
+            products.ImageName = ".p";
             if (ImageUploaders != null && ImageUploaders.IsImage())
             {
                 products.ImageName = Guid.NewGuid().ToString() +System.IO.Path.GetExtension(ImageUploaders.FileName);
