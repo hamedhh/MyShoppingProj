@@ -58,7 +58,7 @@ namespace MyEShoping.Areas.Admin.Controllers
                 ViewBag.productGroups = db.Product_Groups.ToList();
                 return View();
             }
-            products.ImageName = ".p";
+            products.ImageName = "index.png";
             if (ImageUploaders != null && ImageUploaders.IsImage())
             {
                 products.ImageName = Guid.NewGuid().ToString() +System.IO.Path.GetExtension(ImageUploaders.FileName);
@@ -104,6 +104,9 @@ namespace MyEShoping.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.productGroups = db.Product_Groups.ToList();
+            ViewBag.selectedGroup = products.Prodct_Selected_Groups.ToList();
+            ViewBag.tags = string.Join(",", products.Product_Tags.Select(a=>a.Tag).ToList());
             return View(products);
         }
 
@@ -112,8 +115,16 @@ namespace MyEShoping.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,Title,ShortDescription,Text,Price,ImageName,CreateDate")] Products products)
-        {
+        public ActionResult Edit([Bind(Include = "ProductID,Title,ShortDescription,Text,Price,ImageName,CreateDate")] Products products,List<int> selectedGroups,HttpPostedFileBase ImageUploaders, string tags)
+         {
+            if (selectedGroups == null)
+            {
+                ViewBag.GroupError = true;
+                ViewBag.productGroups = db.Product_Groups.ToList();
+                ViewBag.selectedGroup = products.Prodct_Selected_Groups.ToList();
+                ViewBag.tags = tags;
+                return View(products);
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(products).State = EntityState.Modified;
