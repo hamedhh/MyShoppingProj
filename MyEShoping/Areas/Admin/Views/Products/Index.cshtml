@@ -64,7 +64,7 @@
         </td>
         <td>
             <a class="btn btn-default btn-xs" href="#">ویژگی ها</a>
-            <a class="btn btn-success btn-xs" href="#">گالری</a>
+            <a class="btn btn-success btn-xs" href="@Url.Action("Gallery",new {id=item.ProductID })">گالری</a>
             <a class="btn btn-warning btn-xs" href="@Url.Action("Edit",new {id=item.ProductID })">ویرایش</a>
             <a class="btn btn-danger btn-xs" href="@Url.Action("Delete",new {id=item.ProductID })">حذف</a>
         </td>

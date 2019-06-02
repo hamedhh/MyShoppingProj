@@ -20,6 +20,7 @@
           <Property Name="GalleryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="ImageName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Product_Groups">
           <Key>
@@ -70,18 +71,6 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="RegisterDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Prodct_Selected_Groups_Product_Groups">
-          <End Role="Product_Groups" Type="Self.Product_Groups" Multiplicity="1" />
-          <End Role="Prodct_Selected_Groups" Type="Self.Prodct_Selected_Groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product_Groups">
-              <PropertyRef Name="GroupID" />
-            </Principal>
-            <Dependent Role="Prodct_Selected_Groups">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Prodct_Selected_Groups_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="Prodct_Selected_Groups" Type="Self.Prodct_Selected_Groups" Multiplicity="*" />
@@ -150,10 +139,6 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Prodct_Selected_Groups_Product_Groups" Association="Self.FK_Prodct_Selected_Groups_Product_Groups">
-            <End Role="Product_Groups" EntitySet="Product_Groups" />
-            <End Role="Prodct_Selected_Groups" EntitySet="Prodct_Selected_Groups" />
-          </AssociationSet>
           <AssociationSet Name="FK_Prodct_Selected_Groups_Products" Association="Self.FK_Prodct_Selected_Groups_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Prodct_Selected_Groups" EntitySet="Prodct_Selected_Groups" />
@@ -288,6 +273,7 @@
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="ImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="EShoping_DBModel.FK_Product_Galleries_Products" FromRole="Product_Galleries" ToRole="Products" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Product_Tags">
           <Key>
@@ -411,6 +397,7 @@
           <EntitySetMapping Name="Product_Galleries">
             <EntityTypeMapping TypeName="EShoping_DBModel.Product_Galleries">
               <MappingFragment StoreEntitySet="Product_Galleries">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="GalleryID" ColumnName="GalleryID" />
