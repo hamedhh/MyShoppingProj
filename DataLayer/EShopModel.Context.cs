@@ -25,12 +25,14 @@ namespace DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Product_Groups> Product_Groups { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Features> Features { get; set; }
         public virtual DbSet<Prodct_Selected_Groups> Prodct_Selected_Groups { get; set; }
+        public virtual DbSet<Product_Feature> Product_Feature { get; set; }
         public virtual DbSet<Product_Galleries> Product_Galleries { get; set; }
+        public virtual DbSet<Product_Groups> Product_Groups { get; set; }
         public virtual DbSet<Product_Tags> Product_Tags { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

@@ -5,18 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="235b3aa347724d67ac92b9e8cc1ca174" Name="Diagram1">
-        <EntityTypeShape EntityType="EShoping_DBModel.Roles" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EShoping_DBModel.Product_Groups" Width="1.5" PointX="5.375" PointY="0.75" />
-        <AssociationConnector Association="EShoping_DBModel.FK_Product_Groups_Product_Groups" />
-        <EntityTypeShape EntityType="EShoping_DBModel.Users" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="EShoping_DBModel.FK_Users_Roles" />
-        <EntityTypeShape EntityType="EShoping_DBModel.Prodct_Selected_Groups" Width="1.75" PointX="10.375" PointY="6.25" />
-        <EntityTypeShape EntityType="EShoping_DBModel.Product_Galleries" Width="1.75" PointX="10.375" PointY="1.125" />
-        <EntityTypeShape EntityType="EShoping_DBModel.Product_Tags" Width="1.75" PointX="10.375" PointY="3.75" />
-        <EntityTypeShape EntityType="EShoping_DBModel.Products" Width="1.75" PointX="8.125" PointY="3.125" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Features" Width="1.5" PointX="3.75" PointY="5.5" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Prodct_Selected_Groups" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Product_Feature" Width="1.5" PointX="6" PointY="5.25" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Product_Galleries" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Product_Groups" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Product_Tags" Width="1.5" PointX="3" PointY="11" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Products" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Roles" Width="1.5" PointX="7.75" PointY="1.5" />
+        <EntityTypeShape EntityType="EShoping_DBModel.Users" Width="1.5" PointX="10" PointY="1" />
+        <AssociationConnector Association="EShoping_DBModel.FK_Product_Feature_Features" />
         <AssociationConnector Association="EShoping_DBModel.FK_Prodct_Selected_Groups_Products" />
+        <AssociationConnector Association="EShoping_DBModel.FK_Product_Feature_Products" />
         <AssociationConnector Association="EShoping_DBModel.FK_Product_Galleries_Products" />
+        <AssociationConnector Association="EShoping_DBModel.FK_Product_Groups_Product_Groups" />
         <AssociationConnector Association="EShoping_DBModel.FK_Product_Tags_Products" />
+        <AssociationConnector Association="EShoping_DBModel.FK_Users_Roles" />
         <AssociationConnector Association="EShoping_DBModel.FK_Prodct_Selected_Groups_Product_Groups" />
       </Diagram>
     </edmx:Diagrams>

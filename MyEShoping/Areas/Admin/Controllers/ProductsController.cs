@@ -155,9 +155,11 @@ namespace MyEShoping.Areas.Admin.Controllers
                     string[] _tages = tags.Split(',');
                     foreach (var item in _tages)
                     {
-                        db.Product_Tags.Add(new Product_Tags() {
-                        ProductID=products.ProductID,
-                        Tag=item.Trim()});
+                        db.Product_Tags.Add(new Product_Tags()
+                        {
+                            ProductID = products.ProductID,
+                            Tag = item.Trim()
+                        });
                     }
                 }
 
@@ -173,7 +175,7 @@ namespace MyEShoping.Areas.Admin.Controllers
                         });
                     }
                 }
-                
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -209,31 +211,24 @@ namespace MyEShoping.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
+        #region Gallery
         public ActionResult Gallery(int id)
         {
             ViewBag.ProductGalleries = db.Product_Galleries.Where(a => a.ProductID == id).ToList();
-            return View(new Product_Galleries() { ProductID=id});
+            return View(new Product_Galleries() { ProductID = id });
         }
 
         [HttpPost]
-        public ActionResult Gallery(Product_Galleries _productGaleeries,HttpPostedFileBase ImageUp)
+        public ActionResult Gallery(Product_Galleries _productGaleeries, HttpPostedFileBase ImageUp)
         {
             if (ModelState.IsValid)
             {
                 if (ImageUp != null && ImageUp.IsImage())
                 {
-                    _productGaleeries.ImageName =Guid.NewGuid().ToString()+ System.IO.Path.GetExtension(ImageUp.FileName);
-                    ImageUp.SaveAs(Server.MapPath("/Areas/Admin/Images/ProductImages/"+ _productGaleeries.ImageName));
+                    _productGaleeries.ImageName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(ImageUp.FileName);
+                    ImageUp.SaveAs(Server.MapPath("/Areas/Admin/Images/ProductImages/" + _productGaleeries.ImageName));
                     ImageResizer img = new ImageResizer();
                     img.Resize(Server.MapPath("/Areas/Admin/Images/ProductImages/" + _productGaleeries.ImageName),
                         Server.MapPath("/Areas/Admin/Images/ProductImages/Thumb/") + _productGaleeries.ImageName);
@@ -257,6 +252,51 @@ namespace MyEShoping.Areas.Admin.Controllers
             ViewBag.ProductGalleries = db.Product_Galleries.Where(a => a.ProductID == gallery.ProductID).ToList();
             return View("Gallery");
         }
+        #endregion
+
+        #region Feature
+        public ActionResult Feature(int id)
+        {
+            //var selectFeature=db.Products()
+            ViewBag.productFeature = db.Product_Feature.Where(a => a.ProductID == id).ToList();
+            ViewBag.FeatureID = new SelectList(db.Features, "FeatureID", "FeatureTitle");//استفاده از ویوبگ به منظور پر کردن خودکار یک فیلد در صفحه به صورت خودکرا از طریق لیست ---- استفاده از اورلود چهار آیتمی این کلاس برای این کار!!!!!-و
+            return View(new Product_Feature() { ProductID=id});
+        }
+
+        [HttpPost]
+        public ActionResult Feature(Product_Feature _productFeature)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Product_Feature.Add(_productFeature);
+                db.SaveChanges();
+
+            }
+            //ViewBag.productFeature = db.Product_Feature.Where(a => a.ProductID == _productFeature.ProductID).ToList();
+            //ViewBag.FeatureID = new SelectList(db.Features, "FeatureID", "FeatureTitle");
+            //return View();
+            return RedirectToAction("Feature", new { id = _productFeature.ProductID });
+        }
+        public void DeleteFeature(int id)
+        {
+            var productFeature = db.Product_Feature.Find(id);
+            db.Product_Feature.Remove(productFeature);
+            db.SaveChanges();
+            
+        }
+
+
+        #endregion
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
 
 
     }

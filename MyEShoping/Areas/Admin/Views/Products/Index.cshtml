@@ -43,16 +43,15 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @if (item.Prodct_Selected_Groups != null)
+            @if (item.Prodct_Selected_Groups.Any())
             {
-
                 <ol>
-                  @foreach (var Groupitem in item.Prodct_Selected_Groups)
-                  {
-                      <li>
-                          @Groupitem.Product_Groups.GroupTitle
-                      </li>
-                  }
+                    @foreach (var group in item.Prodct_Selected_Groups)
+                    {
+                        <li>
+                            @group.Product_Groups.GroupTitle
+                        </li>
+                    }
                 </ol>
             }
         </td>
@@ -63,7 +62,7 @@
             @item.CreateDate.ToString("dddd, dd MMMM yyyy")
         </td>
         <td>
-            <a class="btn btn-default btn-xs" href="#">ویژگی ها</a>
+            <a class="btn btn-default btn-xs" href="@Url.Action("Feature",new {id=item.ProductID })">ویژگی ها</a>
             <a class="btn btn-success btn-xs" href="@Url.Action("Gallery",new {id=item.ProductID })">گالری</a>
             <a class="btn btn-warning btn-xs" href="@Url.Action("Edit",new {id=item.ProductID })">ویرایش</a>
             <a class="btn btn-danger btn-xs" href="@Url.Action("Delete",new {id=item.ProductID })">حذف</a>

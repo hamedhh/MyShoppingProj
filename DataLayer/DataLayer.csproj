@@ -87,35 +87,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EShopModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Features.cs">
+      <DependentUpon>EShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MetaDataClasses\FeaturesMetaData.cs" />
+    <Compile Include="MetaDataClasses\Prodct_Selected_GroupsMetaData.cs" />
+    <Compile Include="MetaDataClasses\ProductsMetaData.cs" />
+    <Compile Include="MetaDataClasses\Product_FeatureMetaData.cs" />
+    <Compile Include="MetaDataClasses\Product_GalleriesMetaData.cs" />
+    <Compile Include="MetaDataClasses\Product_GroupsMetaData.cs" />
+    <Compile Include="MetaDataClasses\Product_TagsMetaData.cs" />
     <Compile Include="Prodct_Selected_Groups.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\Prodct_Selected_GroupsMetaData.cs" />
     <Compile Include="Products.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\ProductsMetaData.cs" />
+    <Compile Include="Product_Feature.cs">
+      <DependentUpon>EShopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product_Galleries.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\Product_GalleriesMetaData.cs" />
     <Compile Include="Product_Groups.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\Product_GroupsMetaData.cs" />
     <Compile Include="Product_Tags.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\Product_TagsMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MetaDataClasses\RolesMetaData.cs" />
+    <Compile Include="MetaDataClasses\UsersMetaData.cs" />
     <Compile Include="Roles.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\RolesMetaData.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaDataClasses\UsersMetaData.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

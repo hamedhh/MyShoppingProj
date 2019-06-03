@@ -1,0 +1,137 @@
+﻿@using DataLayer;
+@model DataLayer.Product_Feature
+
+@{
+    ViewBag.Title = "Feature";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ویژگی های محصول</h2>
+<div class="row">
+
+
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(a => a.ProductID)
+        <div class="col-md-4">
+            @Html.AntiForgeryToken()
+
+            @*به جای کد زیر که مقدار پروداکت رو مشخص میکنه --- آن را از کنترلر به این ویو پاس میدهیم و مقدارش را مخفی میکنیم که با مدل دوباره برگردانده شود*@
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ProductID, "ProductID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ProductID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FeatureID, "ویژگی", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("FeatureID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FeatureID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ثبت ویژگی محصول" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            @{
+                List<Product_Feature> _productFeaure = ViewBag.productFeature;
+            }
+            @if (_productFeaure.Count > 0)
+            {
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>ویژگی</th>
+                        <th>مقدار</th>
+                        <th>عملیات</th>
+                    </tr>
+
+
+                    @{
+
+
+
+
+                        foreach (var item in _productFeaure)
+                        {
+                            <tr id="Feature_@item.PF_ID" >
+                                <td>
+                                    @item.Features.FeatureTitle
+                                </td>
+                                <td>
+                                    @item.Value
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" onclick="Delete(@item.PF_ID)"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+
+                        }
+
+
+                    }
+
+                </table>
+            }
+        </div>
+    }
+
+</div>
+<div>
+    @Html.ActionLink("بازگشت به لیست", "Index")
+</div>
+
+    <script>
+            function Delete(id) {
+                $.alert({
+                    title: 'پیغام',
+                    content: 'آیا از حذف مطمئن هستید؟',
+                    rtl: true,
+                    closeIcon: true,
+                    buttons: {
+                        confirm: {
+                            text: 'تایید',
+                            btnClass: 'btn btn-danger btn-xs',
+                            action: function () {
+                                $.get("/Admin/Products/DeleteFeature?id=" + id,
+                                    function () { $('#Feature_' + id).hide('slow') })
+
+                                //$.alert('تایید شد.');
+                            }
+                        },
+                        cancel: {
+                            text: 'انصراف',
+                            btnClass: 'btn btn-primary btn-xs',
+                            action: function () {
+                                success()
+                            }
+                        }
+                    }
+                });
+
+            }
+
+        </script>
+
+
