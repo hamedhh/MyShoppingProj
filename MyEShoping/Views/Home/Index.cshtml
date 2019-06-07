@@ -3,8 +3,10 @@
     ViewBag.Title = "Index";
 }
 
-<h1>Index</h1>
 
 @section Slider{
     @Html.Action("Slider");
     }
+
+@Html.Action("LastProduct", "Product")
+

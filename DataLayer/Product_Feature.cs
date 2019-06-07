@@ -21,7 +21,7 @@ namespace DataLayer
         public Nullable<int> ProductID { get; set; }
         public string Value { get; set; }
     
-        public virtual Features Features { get; set; }
         public virtual Products Products { get; set; }
+        public virtual Features Features { get; set; }
     }
 }

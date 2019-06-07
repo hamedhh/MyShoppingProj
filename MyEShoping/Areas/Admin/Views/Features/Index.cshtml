@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataLayer.Feature>
+﻿@model IEnumerable<DataLayer.Features>
 
 @{
     ViewBag.Title = "Index";
@@ -27,8 +27,8 @@
             @Html.DisplayFor(modelItem => item.FeatureTitle)
         </td>
         <td>
-            <a class="btn btn-warning  btn-sm" href="@Url.Action("Edit",new { id=item.FeatuerID})" ><span class="glyphicon glyphicon-edit"></span></a>
-            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete",new { id=item.FeatuerID})" ><span class="glyphicon glyphicon-trash"></span></a>
+            <a class="btn btn-warning  btn-sm" href="@Url.Action("Edit",new { id=item.FeatureID})" ><span class="glyphicon glyphicon-edit"></span></a>
+            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete",new { id=item.FeatureID})" ><span class="glyphicon glyphicon-trash"></span></a>
         </td>
     </tr>
 }

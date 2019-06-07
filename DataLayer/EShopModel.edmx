@@ -36,7 +36,7 @@
           <Property Name="GalleryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="ImageName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Product_Groups">
           <Key>
@@ -231,19 +231,13 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EShoping_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EShoping_DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Features" EntityType="EShoping_DBModel.Features" />
           <EntitySet Name="Prodct_Selected_Groups" EntityType="EShoping_DBModel.Prodct_Selected_Groups" />
           <EntitySet Name="Product_Feature" EntityType="EShoping_DBModel.Product_Feature" />
-          <EntitySet Name="Product_Galleries" EntityType="EShoping_DBModel.Product_Galleries" />
           <EntitySet Name="Product_Groups" EntityType="EShoping_DBModel.Product_Groups" />
           <EntitySet Name="Product_Tags" EntityType="EShoping_DBModel.Product_Tags" />
           <EntitySet Name="Products" EntityType="EShoping_DBModel.Products" />
           <EntitySet Name="Roles" EntityType="EShoping_DBModel.Roles" />
           <EntitySet Name="Users" EntityType="EShoping_DBModel.Users" />
-          <AssociationSet Name="FK_Product_Feature_Features" Association="EShoping_DBModel.FK_Product_Feature_Features">
-            <End Role="Features" EntitySet="Features" />
-            <End Role="Product_Feature" EntitySet="Product_Feature" />
-          </AssociationSet>
           <AssociationSet Name="FK_Prodct_Selected_Groups_Products" Association="EShoping_DBModel.FK_Prodct_Selected_Groups_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Prodct_Selected_Groups" EntitySet="Prodct_Selected_Groups" />
@@ -251,10 +245,6 @@
           <AssociationSet Name="FK_Product_Feature_Products" Association="EShoping_DBModel.FK_Product_Feature_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Product_Feature" EntitySet="Product_Feature" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Galleries_Products" Association="EShoping_DBModel.FK_Product_Galleries_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Product_Galleries" EntitySet="Product_Galleries" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Groups_Product_Groups" Association="EShoping_DBModel.FK_Product_Groups_Product_Groups">
             <End Role="Product_Groups" EntitySet="Product_Groups" />
@@ -272,15 +262,17 @@
             <End Role="Product_Groups" EntitySet="Product_Groups" />
             <End Role="Prodct_Selected_Groups" EntitySet="Prodct_Selected_Groups" />
           </AssociationSet>
+          <EntitySet Name="Product_Galleries" EntityType="EShoping_DBModel.Product_Galleries" />
+          <AssociationSet Name="FK_Product_Galleries_Products" Association="EShoping_DBModel.FK_Product_Galleries_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Galleries" EntitySet="Product_Galleries" />
+          </AssociationSet>
+          <EntitySet Name="Features" EntityType="EShoping_DBModel.Features" />
+          <AssociationSet Name="FK_Product_Feature_Features" Association="EShoping_DBModel.FK_Product_Feature_Features">
+            <End Role="Features" EntitySet="Features" />
+            <End Role="Product_Feature" EntitySet="Product_Feature" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Features">
-          <Key>
-            <PropertyRef Name="FeatureID" />
-          </Key>
-          <Property Name="FeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FeatureTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product_Feature" Relationship="EShoping_DBModel.FK_Product_Feature_Features" FromRole="Features" ToRole="Product_Feature" />
-        </EntityType>
         <EntityType Name="Prodct_Selected_Groups">
           <Key>
             <PropertyRef Name="PG_ID" />
@@ -299,18 +291,8 @@
           <Property Name="FeatureID" Type="Int32" />
           <Property Name="ProductID" Type="Int32" />
           <Property Name="Value" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Features" Relationship="EShoping_DBModel.FK_Product_Feature_Features" FromRole="Product_Feature" ToRole="Features" />
           <NavigationProperty Name="Products" Relationship="EShoping_DBModel.FK_Product_Feature_Products" FromRole="Product_Feature" ToRole="Products" />
-        </EntityType>
-        <EntityType Name="Product_Galleries">
-          <Key>
-            <PropertyRef Name="GalleryID" />
-          </Key>
-          <Property Name="GalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="EShoping_DBModel.FK_Product_Galleries_Products" FromRole="Product_Galleries" ToRole="Products" />
+          <NavigationProperty Name="Features" Relationship="EShoping_DBModel.FK_Product_Feature_Features" FromRole="Product_Feature" ToRole="Features" />
         </EntityType>
         <EntityType Name="Product_Groups">
           <Key>
@@ -345,8 +327,8 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Prodct_Selected_Groups" Relationship="EShoping_DBModel.FK_Prodct_Selected_Groups_Products" FromRole="Products" ToRole="Prodct_Selected_Groups" />
           <NavigationProperty Name="Product_Feature" Relationship="EShoping_DBModel.FK_Product_Feature_Products" FromRole="Products" ToRole="Product_Feature" />
-          <NavigationProperty Name="Product_Galleries" Relationship="EShoping_DBModel.FK_Product_Galleries_Products" FromRole="Products" ToRole="Product_Galleries" />
           <NavigationProperty Name="Product_Tags" Relationship="EShoping_DBModel.FK_Product_Tags_Products" FromRole="Products" ToRole="Product_Tags" />
+          <NavigationProperty Name="Product_Galleries" Relationship="EShoping_DBModel.FK_Product_Galleries_Products" FromRole="Products" ToRole="Product_Galleries" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -371,18 +353,6 @@
           <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Roles" Relationship="EShoping_DBModel.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
-        <Association Name="FK_Product_Feature_Features">
-          <End Type="EShoping_DBModel.Features" Role="Features" Multiplicity="0..1" />
-          <End Type="EShoping_DBModel.Product_Feature" Role="Product_Feature" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Features">
-              <PropertyRef Name="FeatureID" />
-            </Principal>
-            <Dependent Role="Product_Feature">
-              <PropertyRef Name="FeatureID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Prodct_Selected_Groups_Products">
           <End Type="EShoping_DBModel.Products" Role="Products" Multiplicity="1" />
           <End Type="EShoping_DBModel.Prodct_Selected_Groups" Role="Prodct_Selected_Groups" Multiplicity="*" />
@@ -403,18 +373,6 @@
               <PropertyRef Name="ProductID" />
             </Principal>
             <Dependent Role="Product_Feature">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Galleries_Products">
-          <End Type="EShoping_DBModel.Products" Role="Products" Multiplicity="1" />
-          <End Type="EShoping_DBModel.Product_Galleries" Role="Product_Galleries" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Product_Galleries">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
@@ -467,20 +425,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Product_Galleries">
+          <Key>
+            <PropertyRef Name="GalleryID" />
+          </Key>
+          <Property Name="GalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="EShoping_DBModel.FK_Product_Galleries_Products" FromRole="Product_Galleries" ToRole="Products" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Product_Galleries_Products">
+          <End Type="EShoping_DBModel.Products" Role="Products" Multiplicity="1" />
+          <End Type="EShoping_DBModel.Product_Galleries" Role="Product_Galleries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Product_Galleries">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Features">
+          <Key>
+            <PropertyRef Name="FeatureID" />
+          </Key>
+          <Property Name="FeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeatureTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product_Feature" Relationship="EShoping_DBModel.FK_Product_Feature_Features" FromRole="Features" ToRole="Product_Feature" />
+        </EntityType>
+        <Association Name="FK_Product_Feature_Features">
+          <End Type="EShoping_DBModel.Features" Role="Features" Multiplicity="0..1" />
+          <End Type="EShoping_DBModel.Product_Feature" Role="Product_Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Features">
+              <PropertyRef Name="FeatureID" />
+            </Principal>
+            <Dependent Role="Product_Feature">
+              <PropertyRef Name="FeatureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EShoping_DBModelStoreContainer" CdmEntityContainer="EShoping_DBEntities">
-          <EntitySetMapping Name="Features">
-            <EntityTypeMapping TypeName="EShoping_DBModel.Features">
-              <MappingFragment StoreEntitySet="Features">
-                <ScalarProperty Name="FeatureTitle" ColumnName="FeatureTitle" />
-                <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Prodct_Selected_Groups">
             <EntityTypeMapping TypeName="EShoping_DBModel.Prodct_Selected_Groups">
               <MappingFragment StoreEntitySet="Prodct_Selected_Groups">
@@ -497,16 +489,6 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
                 <ScalarProperty Name="PF_ID" ColumnName="PF_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Product_Galleries">
-            <EntityTypeMapping TypeName="EShoping_DBModel.Product_Galleries">
-              <MappingFragment StoreEntitySet="Product_Galleries">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="GalleryID" ColumnName="GalleryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -561,6 +543,24 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Galleries">
+            <EntityTypeMapping TypeName="EShoping_DBModel.Product_Galleries">
+              <MappingFragment StoreEntitySet="Product_Galleries">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="GalleryID" ColumnName="GalleryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="EShoping_DBModel.Features">
+              <MappingFragment StoreEntitySet="Features">
+                <ScalarProperty Name="FeatureTitle" ColumnName="FeatureTitle" />
+                <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

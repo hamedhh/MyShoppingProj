@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MoreLinq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataLayer;
+using DataLayer.ViewModels;
 
 namespace MyEShoping.Controllers
 {
@@ -14,6 +17,30 @@ namespace MyEShoping.Controllers
         {
             return PartialView(_db.Product_Groups.ToList());
         }
+
+        public ActionResult LastProduct()
+        {
+            var productModel = _db.Products.OrderByDescending(a => a.ProductID).Take(12).ToList();
+            return PartialView(productModel);
+        }
+
+        [Route("ShowProducts/{id}")]
+        public ActionResult ShowProducts(int id)
+        {
+            var selectedProduct = _db.Products.Find(id);
+            if (selectedProduct == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.productFeaturs = _db.Product_Feature.DistinctBy(a => a.FeatureID).Select(f => new ShowProductFeatureViewModel()
+            {
+                FeatureTitle = f.Features.FeatureTitle,
+                Value = _db.Product_Feature.Where(a => a.FeatureID == f.FeatureID).Select(b => b.Value).ToList()
+            }).ToList();
+            return View(selectedProduct);
+        }
+
+
 
     }
 }

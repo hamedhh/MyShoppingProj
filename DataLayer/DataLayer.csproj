@@ -125,6 +125,7 @@
       <DependentUpon>EShopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\ShowProductFeatureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EShopModel.edmx">
