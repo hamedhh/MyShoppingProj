@@ -71,112 +71,26 @@
                 List<ShowProductFeatureViewModel> proFeaturs = ViewBag.productFeaturs;
             }
             @if (proFeaturs != null)
-            { <ul>
-                @foreach (var item in proFeaturs)
-                {
-                    <li>@item.FeatureTitle: @string.Join(" ,  ", item.Value)</li>
+            {<ul>
+                    @foreach (var item in proFeaturs)
+                    {
+                        <li>@item.FeatureTitle: @string.Join(" ,  ", item.Value)</li>
 
 
-                }
-            </ul>
+                    }
+                </ul>
             }
 
         </div>
         <!-- End Chart -->
         <!-- Comment -->
         <div id="comments" class="tab-pane fade">
-            <div class="comment-layer">
-                <form action="" method="post">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="نام و نام خانوادگی" type="text">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="ایمیل" type="text">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="وب سایت" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <textarea class="form-control" placeholder="متن دیدگاه"></textarea>
-                        <input class="btn btn-primary" value="ثبت دیدگاه ارزشمند شما" type="submit">
-                    </div>
-                    <div class="clearfix"></div>
-                </form>
-                <ul class="comment-list">
-                    <li>
-                        <a href="" class="reply-button">پاسخ</a>
-
-                        <img src="img/avatar.jpg" width="65">
-                        <div>
-                            <h5>ارسال شده از : میترا رحیمی در تاریخ : 15/5/95 </h5>
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                        <ul>
-                            <li>
-                                <a href="" class="reply-button">پاسخ</a>
-
-                                <img src="img/avatar.jpg" width="65">
-                                <div>
-                                    <h5>ارسال شده از : میترا رحیمی در تاریخ : 15/5/95 </h5>
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                                    </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <a href="" class="reply-button">پاسخ</a>
-                                <img src="img/avatar.jpg" width="65">
-                                <div>
-                                    <h5>ارسال شده از : میترا رحیمی در تاریخ : 15/5/95 </h5>
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                                    </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <a href="" class="reply-button">پاسخ</a>
-                                <img src="img/avatar.jpg" width="65">
-                                <div>
-                                    <h5>ارسال شده از : میترا رحیمی در تاریخ : 15/5/95 </h5>
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                                    </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <li>
-                        <a href="" class="reply-button">پاسخ</a>
-                        <img src="img/avatar.jpg" width="65">
-                        <div>
-                            <h5>ارسال شده از : میترا رحیمی در تاریخ : 15/5/95 </h5>
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </li>
-                    <li>
-                        <a href="" class="reply-button">پاسخ</a>
-                        <img src="img/avatar.jpg" width="65">
-                        <div>
-                            <h5>ارسال شده از : میترا رحیمی در تاریخ : 15/5/95 </h5>
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیستری را برای طراحان رایانه ای و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </li>
+            <div class="comment-layer" id="commentProduct" >
+                @Html.Action("CreateComment")
+                <ul class="comment-list" id="ListComment">
+                    @Html.Action("ShowComment")
                 </ul>
+                @*@Html.Action("ShowComment", "Product", new { id = Model.ProductID })*@
             </div>
 
         </div>
@@ -195,6 +109,24 @@
 
     }
 
-
-
 </section>
+
+<script>
+    function CreateSuccess() {
+        $("#UserName").val("");
+        $("#Email").val("");
+        $("#WebSite").val("");
+        $("#Commnet").val("");
+    }
+
+    function ReplyComment(id) {
+        $("#ParentID").val(id);
+        alert("لطفن فیلدهای خالی را پرکنید");
+        $("html, body").delay(2000).animate({ scrollTop: $('#commentProduct').offset().top }, 2000);
+    }
+        //$('html, body').animate({
+        //    scrollTop: $("#createCM").offset().top
+        //}, 2000);
+    
+</script>
+

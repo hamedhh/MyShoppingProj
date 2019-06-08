@@ -1244,6 +1244,7 @@
     <Content Include="Content\css\bootstrap-rtl.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\carousel.css" />
+    <Content Include="Content\css\CustomStyle.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\style.css" />
@@ -1550,6 +1551,8 @@
     <Content Include="Views\Product\LastProduct.cshtml" />
     <Content Include="Views\Shared\_Product.cshtml" />
     <Content Include="Views\Product\ShowProducts.cshtml" />
+    <Content Include="Views\Product\ShowComment.cshtml" />
+    <Content Include="Views\Product\CreateComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

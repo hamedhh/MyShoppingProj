@@ -40,6 +40,28 @@ namespace MyEShoping.Controllers
             return View(selectedProduct);
         }
 
+        public ActionResult ShowComment(int id)
+        {
+            var SelectedProductComments = _db.Product_Comments.Where(a => a.ProductID == id);
+            return PartialView(SelectedProductComments);
+        }
+        public ActionResult CreateComment(int id)
+        {
+            return PartialView(new Product_Comments() {
+            ProductID=id});
+        }
+        [HttpPost]
+        public ActionResult CreateComment(Product_Comments _productComment)
+        {
+            if (ModelState.IsValid)
+            {
+                _productComment.CreateDate = DateTime.Now;
+                _db.Product_Comments.Add(_productComment);
+                _db.SaveChanges();
+                return PartialView("ShowComment", _db.Product_Comments.Where(a=>a.ProductID==_productComment.ProductID));
+            }
+            return PartialView(_productComment);
+        }
 
 
     }
