@@ -1256,10 +1256,13 @@
     <Content Include="Content\img\avatar.jpg" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\img.jpg" />
-    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\logo__.png" />
+    <Content Include="Content\img\mylogo.png" />
     <Content Include="Content\img\phone.png" />
     <Content Include="Content\img\shop.png" />
     <Content Include="Content\img\slider.jpg" />
+    <Content Include="Content\img\slider___.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\carousel.js" />
     <Content Include="Content\js\jquery-v1.11.3.js" />
@@ -1505,6 +1508,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1553,6 +1557,7 @@
     <Content Include="Views\Product\ShowProducts.cshtml" />
     <Content Include="Views\Product\ShowComment.cshtml" />
     <Content Include="Views\Product\CreateComment.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
