@@ -63,6 +63,51 @@ namespace MyEShoping.Controllers
             return PartialView(_productComment);
         }
 
+        [Route("Archive")]
+        public ActionResult Archive(int pageId = 1,string Title="",int MinPrice=0,int MaxPrice=0,List<int> selectedGP=null)
+        {
+            ViewBag.pageCount = pageId;
+            ViewBag.productName = Title;
+            ViewBag.minPrice = MinPrice;
+            ViewBag.maxPrice = MaxPrice;
+            ViewBag.selectedGroup = selectedGP;
+            ViewBag.ProductGroups = _db.Product_Groups.ToList();
+            List<Products> _listProduct = new List<Products>();
+            if (selectedGP != null && selectedGP.Any())
+            {
+                foreach (int item in selectedGP)
+                {
+                    _listProduct.AddRange(_db.Prodct_Selected_Groups.Where(a => a.GroupID == item).Select(b => b.Products).ToList());
+                }
+                _listProduct = _listProduct.Distinct().ToList();
+
+            }
+            else
+            {
+                _listProduct.AddRange(_db.Products.ToList());
+
+            }
+            if (Title != string.Empty)
+                _listProduct= _listProduct.Where(a => a.Title.Contains(Title)).ToList();
+            if (MinPrice > 0)
+                _listProduct= _listProduct.Where(a => a.Price >= MinPrice).ToList();
+            if (MaxPrice > 0)
+                _listProduct = _listProduct.Where(a => a.Price <= MaxPrice).ToList();
+
+            //paging____________________________
+            int take = 5;
+            int skip = (pageId - 1) * take;
+            ViewBag.pageCount = _listProduct.Count/take;
+            return View(_listProduct.OrderByDescending(a=>a.CreateDate).Skip(skip).Take(take).ToList());
+
+        }
+
+        //[HttpPost]------------وقتی در ویو تگ فرم داریم دیگر کنترلر با متد پست نداریم و اعمال نمیشود!!!!ث
+        //public ActionResult Archive(string Title)
+        //{
+        //    ViewBag.ProductGroups = _db.Product_Groups.ToList();
+        //    return View();
+        //}
 
     }
 }

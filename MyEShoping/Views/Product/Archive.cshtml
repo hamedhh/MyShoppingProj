@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DataLayer.Products>
+@{
+    ViewBag.Title = "Archive";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Filters{
+    <section class="border-radius basket-side">
+        <header><h3> جستجوی پیشرفته  </h3></header>
+        <article class="CustomFilter">
+            <form action="/Archive" method="post" id="searchform">
+                <input type="hidden" value="@ViewBag.pageCount" id="pageId" name="pageId" />
+                <p>عنوان محصول</p>
+                <p><input type="text" placeholder="عنوان محصول را وارد کنید" name="Title" class="form-control" /></p>
+
+                <p>از قیمت</p>
+                <p><input type="number" placeholder="کمتریت قیمت را وارد کنید" name="MaxPrice" class="form-control" /></p>
+
+                <p>تا قیمت</p>
+                <p><input type="number" placeholder="بیشترین قیمت را وارد کنید" name="MinPrice" class="form-control" /></p>
+                <p>گروه ها</p>
+                @{
+                    List<DataLayer.Product_Groups> _productGroups = ViewBag.ProductGroups;
+                    <ul>
+                        @foreach (var item in _productGroups.Where(a => a.ParentID == null))
+                        {
+                            <li class="CustomFilter">
+                                <input type="checkbox" value="@item.GroupID" name="selectedGP" /> <span class="CustomFilter">@item.GroupTitle</span>
+                                @if (_productGroups.Any(a => a.ParentID == item.GroupID))
+                                {
+                                    <ul>
+                                        @foreach (var subItem in _productGroups.Where(a => a.ParentID == item.GroupID))
+                                        {
+                                            <li class="CustomFilter">
+                                                <input type="checkbox" value="@subItem.GroupID" name="selectedGP" /> <span class="CustomFilter">@subItem.GroupTitle</span>
+                                            </li>
+
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+                <input type="submit" class="btn btn-primary" value="اعمال فیلتر" />
+            </form>
+
+        </article>
+    </section>
+
+}
+
+<section class="last-products">
+    <header><h3> آرشیو محصولات </h3></header>
+    <article>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_Product", item);
+        }
+        <div class="clearfix"></div>
+    </article>
+</section>
+@if (ViewBag.pageCount > 1)
+{
+    <div class="pagination-layer">
+        <ul class="pagination">
+
+            @for (int i = 1; i <= ViewBag.pageCount; i++)
+            {
+                <li><a onclick="changePage(@i)">@i</a></li>
+            }
+
+        </ul>
+    </div>
+}
+<script>
+    function changePage(pageNumber) {
+        $("#pageID").val(pageNumber);
+        $("#searchform").submit();
+
+    }
+</script>
+
+
