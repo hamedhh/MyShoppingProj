@@ -1,4 +1,7 @@
-﻿@model IEnumerable<DataLayer.Products>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@*@model IEnumerable<DataLayer.Products>*@
+@model IPagedList<DataLayer.Products>
 @{
     ViewBag.Title = "Archive";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,35 +52,42 @@
 
 }
 
-<section class="last-products">
-    <header><h3> آرشیو محصولات </h3></header>
-    <article>
-        @foreach (var item in Model)
-        {
-            @Html.Partial("_Product", item);
-        }
-        <div class="clearfix"></div>
-    </article>
-</section>
-@if (ViewBag.pageCount > 1)
-{
-    <div class="pagination-layer">
-        <ul class="pagination">
-
-            @for (int i = 1; i <= ViewBag.pageCount; i++)
+    <section class="last-products">
+        <header><h3> آرشیو محصولات </h3></header>
+        <article>
+            @foreach (var item in Model)
             {
-                <li><a onclick="changePage(@i)">@i</a></li>
+                @Html.Partial("_Product", item);
             }
+            <div class="clearfix"></div>
 
-        </ul>
-    </div>
-}
-<script>
-    function changePage(pageNumber) {
-        $("#pageID").val(pageNumber);
-        $("#searchform").submit();
+        </article>
+        <div id='Paging' dir="rtl">
+            @Html.PagedListPager(Model, page => Url.Action("Archive", new { page, searchby = Request.QueryString["searchby"], search = Request.QueryString["search"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = false, DisplayItemSliceAndTotal = false })
+        </div>
+    </section>
 
+
+
+@*@if (ViewBag.pageCount > 1)
+    {
+        <div class="pagination-layer">
+            <ul class="pagination">
+
+                @for (int i = 1; i <= ViewBag.pageCount; i++)
+                {
+                    <li><a onclick="changePage(@i)">@i</a></li>
+                }
+
+            </ul>
+        </div>
     }
-</script>
+    <script>
+        function changePage(pageNumber) {
+            $("#pageID").val(pageNumber);
+            $("#searchform").submit();
+
+        }
+    </script>*@
 
 

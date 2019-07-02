@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer;
 using DataLayer.ViewModels;
+using PagedList;
 
 namespace MyEShoping.Controllers
 {
@@ -64,9 +65,11 @@ namespace MyEShoping.Controllers
         }
 
         [Route("Archive")]
-        public ActionResult Archive(int pageId = 1,string Title="",int MinPrice=0,int MaxPrice=0,List<int> selectedGP=null)
+        public ActionResult Archive(int? page = 1,string Title="",int MinPrice=0,int MaxPrice=0,List<int> selectedGP=null)
         {
-            ViewBag.pageCount = pageId;
+            int pageIndex = page.HasValue?Convert.ToInt32(page) :1;
+            int pageSize = 3;
+            //ViewBag.pageCount = pageId;
             ViewBag.productName = Title;
             ViewBag.minPrice = MinPrice;
             ViewBag.maxPrice = MaxPrice;
@@ -95,10 +98,11 @@ namespace MyEShoping.Controllers
                 _listProduct = _listProduct.Where(a => a.Price <= MaxPrice).ToList();
 
             //paging____________________________
-            int take = 5;
-            int skip = (pageId - 1) * take;
-            ViewBag.pageCount = _listProduct.Count/take;
-            return View(_listProduct.OrderByDescending(a=>a.CreateDate).Skip(skip).Take(take).ToList());
+            //int take = 5;
+            //int skip = (pageId - 1) * take;
+            //ViewBag.pageCount = _listProduct.Count/take;-
+            //return View(_listProduct.OrderByDescending(a=>a.CreateDate).Skip(skip).Take(take).ToList());
+            return View(_listProduct.ToPagedList(pageIndex, pageSize));
 
         }
 

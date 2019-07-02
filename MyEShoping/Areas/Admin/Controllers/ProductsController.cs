@@ -83,8 +83,7 @@ namespace MyEShoping.Areas.Admin.Controllers
                 {
                     db.Product_Tags.Add(new Product_Tags() { ProductID = products.ProductID, Tag = tagItems.Trim() });
                 }
-
-
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
