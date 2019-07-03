@@ -28,7 +28,7 @@
                 <div class="clientarea">
                     <ul>
                         @Html.Partial("LoggedInUser")
-                        <li><a href=""><i class="fa fa-shopping-bag"></i> سبد خرید <span>0</span></a></li>
+                        <li><a href=""><i class="fa fa-shopping-bag"></i> سبد خرید <span id="countCardshop"></span></a></li>
                     </ul>
                 </div>
                 <!-- End Clientarea and Basket -->
@@ -100,32 +100,7 @@
         <aside class="col-md-3 col-sm-4 right-side-content">
             @RenderSection("Filters", false)
             <!-- Basket -->
-            <section class="border-radius basket-side">
-                <header><h3> سبد خرید شما  </h3></header>
-                <article>
-                    <ul>
-                        <li>
-                            <img class="border-radius" src="/Content/img/1.jpg">
-                            <div class="left-basket">
-                                <a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <img class="border-radius" src="/Content/img/1.jpg">
-                            <div class="left-basket">
-                                <a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <img class="border-radius" src="/Content/img/1.jpg">
-                            <div class="left-basket">
-                                <a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="" class="show-basket-button border-radius">مشاهده سبد خرید</a>
-                </article>
-            </section>
+            @Html.Action("ShopCard", "Index")
             <!-- End Basket -->
             <!-- compare -->
             <section class="border-radius compare-side">
@@ -240,5 +215,23 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        $(function () {
+            countCard();
+        });
+
+        function countCard() {
+            $.get('/api/Api_ShopCard', function (resultData) {
+                $('#countCardshop').text(resultData);
+            });
+        }
+
+        function countCard(id) {
+            $.get('/api/Api_ShopCard?id=' + id, function(resultData){
+                $('#countCardshop').text(resultData);
+            });
+        }
+    </script>
 </body>
 </html>

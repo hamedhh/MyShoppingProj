@@ -11,4 +11,11 @@ namespace DataLayer.ViewModels
         public int ProductID { get; set; }
         public int Count { get; set; }
     }
+
+    public class ShopCardViewModel
+    {
+        public int ProductID { get; set; }
+        public int Count { get; set; }
+        public string ImageName { get; set; }
+    }
 }

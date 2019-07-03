@@ -88,7 +88,6 @@ namespace MyEShoping.Controllers
             else
             {
                 _listProduct.AddRange(_db.Products.ToList());
-
             }
             if (Title != string.Empty)
                 _listProduct= _listProduct.Where(a => a.Title.Contains(Title)).ToList();
