@@ -1,16 +1,23 @@
-﻿@model DataLayer.ViewModels.ShopCardViewModel
-<section class="border-radius basket-side">
-    <header><h3> سبد خرید شما  </h3></header>
-    <article>
-        <ul>
-            <li>
-                <img class="border-radius" src="/Content/img/1.jpg">
-                <div class="left-basket">
-                    <a href="">محصول شماره یک <span class="border-radius"> 2 </span></a>
-                </div>
-            </li>
+﻿@model IEnumerable<DataLayer.ViewModels.ShopCardViewModel>
+@if (Model.Any())
+{<section class="border-radius basket-side">
+        <header><h3> سبد خرید شما  </h3></header>
+        <article>
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <img class="border-radius" src="~/Areas/Admin/Images/ProductImages/Thumb/@item.ImageName">
+                        <div class="left-basket">
+                            <a href="">@item.Title<span class="border-radius">@item.Count</span></a>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <a href="" class="show-basket-button border-radius">مشاهده سبد خرید</a>
+        </article>
+    </section>
 
-        </ul>
-        <a href="" class="show-basket-button border-radius">مشاهده سبد خرید</a>
-    </article>
-</section>
+
+}
+

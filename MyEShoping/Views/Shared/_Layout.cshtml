@@ -100,7 +100,10 @@
         <aside class="col-md-3 col-sm-4 right-side-content">
             @RenderSection("Filters", false)
             <!-- Basket -->
-            @Html.Action("ShopCard", "Index")
+            <div id="shopCard">
+                @Html.Action("Index", "ShopCard")
+
+            </div>
             <!-- End Basket -->
             <!-- compare -->
             <section class="border-radius compare-side">
@@ -230,7 +233,12 @@
         function countCard(id) {
             $.get('/api/Api_ShopCard?id=' + id, function(resultData){
                 $('#countCardshop').text(resultData);
+                updateShopCard();
             });
+        }
+
+        function updateShopCard() {
+            $('#shopCard').load('/ShopCard/Index').fadeOut(500).fadeIn(500);
         }
     </script>
 </body>
